@@ -1,0 +1,95 @@
+#upstream project_settings {
+#    server unix:/run/gunicorn.sock
+#    fail_timeout=0;
+#}
+
+server {
+    listen 8080;
+    server_name 158.160.27.247;
+
+#    root /home/dev/app/;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location ^~ /static/ {
+        root /home/prod/app/;
+        expires 30d;
+        try_files $uri $uri/ @secondStatic; 
+#@thirdStatic;
+     }
+    
+    location @secondStatic {
+        root /home/prod/app/uploaded_images;
+        expires 30d;
+    }
+#    location @thirdStatic {
+#        root /home/prod/app/uploaded_videos;
+#        expires 30d;
+#    }
+
+
+
+#    location /static/ {
+#        root /home/prod/app/static;
+#     }
+#    location /uploaded_images/ {
+#        alias /home/prod/app/static/uploaded_images/;
+#     } 
+    location /media/ {
+        alias /home/prod/app/uploaded_videos/static/;
+     }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+    
+        proxy_read_timeout 600;
+        proxy_connect_timeout 600;
+
+}
+
+
+#upstream project_settings {
+#    server unix:/run/gunicorn_dev.sock 
+#    fail_timeout=0;
+#}
+
+#server {
+#
+#    listen 8000;
+#    server_name 84.252.142.157;
+#	server_name app www.app.local;
+#	root /home/dev/appdev/;
+    # disable any limits to avoid HTTP 413 for large image uploads
+#    client_max_body_size 0;
+
+#    location / {
+#        if (!-f $request_filename) {
+#            proxy_pass http://project_settings;
+#            break;
+#        }
+#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#        proxy_set_header Host $host;
+#        proxy_redirect off;
+#    }
+#    #static file directory#
+#
+#    location /static {
+#	autoindex on;
+#        alias /home/dev/appdev/uploaded_videos/;
+#	root /home/dev/appdev/;
+#    }
+#    media file directory
+#    location /media {#
+#	autoindex on;
+#        alias /home/dev/appdev/uploaded_videos/;
+#        root /home/dev/appdev/;
+#    }
+
+#	proxy_read_timeout 600;#
+#	proxy_connect_timeout 600;
+
+#}
+
+
