@@ -5,16 +5,12 @@ Django settings for project_settings project.
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Build path to site
-#SITE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 # Build paths inside the project like this: os.path.join(PROJECT_DIR, ...)
 PROJECT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-#PROJECT_DIR2 = '/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -38,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ml_app.apps.MlAppConfig'
+    'app.apps.MlAppConfig'
 ]
 
 MIDDLEWARE = [
@@ -102,42 +98,22 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-#used in production to serve static files
-##STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-#STATIC_ROOT = os.path.join(
-#	os.path.dirname(BASE_DIR), "appdev", "deployment", "collected_static")
-
-#STATIC_ROOT = "/home/dev/appdev/static/"
-
-
-
 #url for static files
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'uploaded_images'),
-#    os.path.join(BASE_DIR, "deployment", "collected_static"),
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'models'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'deployment', 'static')
-#STATIC_ROOT = os.path.join(PROJECT_DIR, 'static') #empty dir to collect all static files
-
 
 CONTENT_TYPES = ['video']
 MAX_UPLOAD_SIZE = "104857600"
 
 MEDIA_URL = '/media/'
-
-#MEDIA_ROOT = os.path.join(
-#	os.path.dirname(BASE_DIR), "appdev", "deployment", "media")
-
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_videos')
-
-
 
 STATICFILES_FINDERS = (
 

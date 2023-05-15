@@ -5,7 +5,7 @@ from django.urls import path, include
 from . import views
 from .views import about, index, predict_page,cuda_full
 
-app_name = 'ml_app'
+app_name = 'app'
 handler404 = views.handler404
 
 urlpatterns = [
