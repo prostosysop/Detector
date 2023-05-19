@@ -18,3 +18,5 @@
 
 В каталоге dataset_prep - код для подготовки собственного датасета
 По ссылке https://drive.google.com/drive/folders/1pK1lP4g4JqFcIrrczsrRAzbrIFUR8eTQ?usp=sharing доступны уже готовые модели
+
+Реализованный проект выложен на ресурсе cloud.yandex.ru (ip по запросу)
